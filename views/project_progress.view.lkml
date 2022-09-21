@@ -42,8 +42,9 @@ view: project_progress {
     sql:
     case
     when( project_plan.Total___Manhours - ${TABLE}.manhour_number) > 0 then "Profit"
-    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) <= 0 then "Loss"
-    else "Loss"
+    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) < 0 then "Loss"
+    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) = 0 then "Loss"
+    else "Others"
     end ;;
   }
   dimension: bd {
