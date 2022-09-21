@@ -137,7 +137,7 @@ view: project_progress {
 
   measure: calculated_mh {
     type: sum
-    sql: ${TABLE}.estimate_manhours - ${TABLE}.manhour_number  ;;
+    sql: NULLIF(project_plan.Total___Manhours,0) - ${TABLE}.manhour_number  ;;
     value_format_name: decimal_2
   }
   measure: count {
