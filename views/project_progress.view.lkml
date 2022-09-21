@@ -42,9 +42,11 @@ view: project_progress {
     type: string
     sql:
     case
-    when(NULLIF(project_plan.Total___Manhours,0) - ${TABLE}.manhour_number) > 0.00 then "Profit"
-    when(NULLIF(project_plan.Total___Manhours,0) - ${TABLE}.manhour_number) < 0.00 then "Loss"
-    when(NULLIF(project_plan.Total___Manhours,0) - ${TABLE}.manhour_number) = 0.00 then "Loss"
+    when project_plan.Total___Manhours is null then "Total Mh missing"
+    when ${TABLE}.manhour_number is null then "Actual Mh missing"
+    when(project_plan.Total___Manhours - ${TABLE}.manhour_number) > 0.00 then "Profit"
+    when(project_plan.Total___Manhours - ${TABLE}.manhour_number) < 0.00 then "Loss"
+    when(project_plan.Total___Manhours - ${TABLE}.manhour_number) = 0.00 then "Loss"
     else "Others"
     end ;;
   }
