@@ -41,8 +41,8 @@ view: project_progress {
     type: string
     sql:
     case
-    when( project_plan.total_mh - ${TABLE}.manhour_number) > 0 then "Profit"
-    when( project_plan.total_mh - ${TABLE}.manhour_number) <= 0 then "Loss"
+    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) > 0 then "Profit"
+    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) <= 0 then "Loss"
     else "Loss"
     end ;;
   }
