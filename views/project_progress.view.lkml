@@ -43,7 +43,7 @@ view: project_progress {
     case
     when( ${TABLE}.estimate_manhours - ${TABLE}.manhour_number) > 0 then "Profit"
     when( ${TABLE}.estimate_manhours - ${TABLE}.manhour_number) <= 0 then "Loss"
-    else "others"
+    else "Loss"
     end ;;
   }
   dimension: bd {
