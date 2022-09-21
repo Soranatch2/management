@@ -16,28 +16,28 @@ explore: project_progress {
 
   join: everhour_dataset {
     type: left_outer
-    view_label: "everhour"
+    view_label: "Everhour"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = trim(${everhour_dataset.scope_id}) ;;
   }
 
   join: jira_dataset {
     type: left_outer
-    view_label: "jira"
+    view_label: "Jira"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = ${jira_dataset.scope_id} ;;
   }
 
   join: employee_dataset {
     type: left_outer
-    view_label: "employee_match"
+    view_label: "Employee"
     relationship: one_to_many
     sql_on: ${employee_dataset.employee_name_en} = trim(${everhour_dataset.member}) ;;
   }
 
   join: project_plan {
     type: left_outer
-    view_label: "project_plan"
+    view_label: "Project"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = ${project_plan.scope_id} ;;
   }
