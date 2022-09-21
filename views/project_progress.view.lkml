@@ -37,13 +37,14 @@ view: project_progress {
     sql: ${TABLE}.project_name ;;
   }
 
+# NULLIF(${sale_price},0)
   dimension: result {
     type: string
     sql:
     case
-    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) > 0 then "Profit"
-    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) < 0 then "Loss"
-    when( project_plan.Total___Manhours - ${TABLE}.manhour_number) = 0 then "Loss"
+    when(NULLIF(project_plan.Total___Manhours,0) - NULLIF(${TABLE}.manhour_number,0)) > 0 then "Profit"
+    when(NULLIF(project_plan.Total___Manhours,0) - NULLIF(${TABLE}.manhour_number,0)) < 0 then "Loss"
+    when(NULLIF(project_plan.Total___Manhours,0) - NULLIF(${TABLE}.manhour_number,0)) = 0 then "Loss"
     else "Others"
     end ;;
   }
