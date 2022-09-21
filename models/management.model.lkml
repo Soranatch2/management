@@ -44,10 +44,7 @@ explore: project_progress {
 
 }
 
-explore: employee_dataset {
-
-
-}
+explore: employee_dataset {}
 
 explore: jira_dataset {}
 
