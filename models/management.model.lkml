@@ -28,9 +28,16 @@ explore: project_progress {
     sql_on: ${project_progress.scope_id} = ${jira_dataset.scope_id} ;;
   }
 
+  join: employee_dataset {
+    type: left_outer
+    view_label: "employee_match"
+    relationship: one_to_many
+    sql_on: ${employee_dataset.employee_name_en} = trim(${everhour_dataset.member}) ;;
+  }
 }
 
 explore: employee_dataset {
+
 
   join: everhour_dataset {
     type: left_outer
