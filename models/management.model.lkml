@@ -34,17 +34,18 @@ explore: project_progress {
     relationship: one_to_many
     sql_on: ${employee_dataset.employee_name_en} = trim(${everhour_dataset.member}) ;;
   }
+
+  join: project_plan {
+    type: left_outer
+    view_label: "scope_id"
+    relationship: one_to_one
+    sql_on: ${project_progress.scope_id} = ${project_plan.scope_id} ;;
+  }
+
 }
 
 explore: employee_dataset {
 
-
-  join: everhour_dataset {
-    type: left_outer
-    view_label: "employee_match"
-    relationship: one_to_many
-    sql_on: ${employee_dataset.employee_name_en} = trim(${everhour_dataset.member}) ;;
-  }
 
 }
 

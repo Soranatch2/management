@@ -29,7 +29,7 @@ view: project_progress {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.project_end ;;
+    sql: ${TABLE}.Project__End_Date;;
   }
 
   dimension: project_name {
