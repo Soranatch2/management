@@ -91,6 +91,7 @@ view: project_progress {
   measure: estimate_manhours {
     type: sum
     sql: ${TABLE}.estimate_manhours ;;
+    value_format_name: decimal_2
   }
 
   measure: man_day {
@@ -126,6 +127,7 @@ view: project_progress {
   measure: calculated_mh {
     type: sum
     sql: ${TABLE}.estimate_manhours - ${TABLE}.manhour_number  ;;
+    value_format_name: decimal_2
   }
   measure: count {
     type: count
