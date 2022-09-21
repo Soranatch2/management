@@ -44,12 +44,12 @@ explore: project_progress {
 
 }
 
-explore: employee_dataset {}
+# explore: employee_dataset {}
 
-explore: jira_dataset {}
+# explore: jira_dataset {}
 
-explore: everhour_time_tracking {}
+# explore: everhour_time_tracking {}
 
-explore: everhour_dataset {}
+# explore: everhour_dataset {}
 
-explore: project_plan{}
+# explore: project_plan{}

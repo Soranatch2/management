@@ -5,6 +5,8 @@ view: project_plan {
   # # Define your dimensions and measures here, like this:
 
   dimension_group: project_start {
+    label: "Project Start Date"
+    description: "Bigquery : Project Start Date"
     type: time
     timeframes: [
       raw,
@@ -20,6 +22,8 @@ view: project_plan {
   }
 
   dimension_group: project_end {
+    label: "Project End Date"
+    description: "Bigquery : Project End Date"
     type: time
     timeframes: [
       raw,
@@ -35,68 +39,79 @@ view: project_plan {
   }
 
   dimension: bd {
-    description: "Unique ID for each user that has ordered"
+    label: "Business Development Name"
+    description: "Bigquery : Business Development who responsible for this project"
     type: string
     sql: ${TABLE}.BD ;;
   }
 
   dimension:pm {
-    description: "Unique ID for each user that has ordered"
+    label: "Project Development Name"
+    description: "Bigquery : Project Manager who responsible for this project"
     type: string
     sql: ${TABLE}.PM ;;
   }
 
   dimension: mentor {
-    description: "Unique ID for each user that has ordered"
+    label: "Mentor"
+    description: "Bigquery : Mentor/Manager who responsible for this project"
     type: string
     sql: ${TABLE}.Mentor ;;
   }
 
   dimension: clients {
-    description: "Unique ID for each user that has ordered"
+    label: "Client Name"
+    description: "Bigquery : Client Name"
     type: string
     sql: ${TABLE}.Clients ;;
     drill_fields: [project_detial*]
     }
 
   dimension: customer_ar {
-    description: "Unique ID for each user that has ordered"
+    label: "Customer AR"
+    description: "Bigquery : Customer Full Name"
     type: string
     sql: ${TABLE}.Customer_AR ;;
   }
 
   dimension: scope_id {
-    description: "Unique ID for each user that has ordered"
+    label: "Scope ID"
+    description: "Bigquery : Scope ID from project plan Google Sheet"
     type: string
     sql: ${TABLE}.Scope_ID ;;
   }
 
   dimension: project_name {
-    description: "Unique ID for each user that has ordered"
+    label: "Project Name"
+    description: "Bigquery : Project Name"
     type: string
     sql: ${TABLE}.Project_Name ;;
   }
 
   dimension: scope {
-    description: "Unique ID for each user that has ordered"
+    label: "SCOPE"
+    description: "Bigquery : Split Scope of work by Department from Scope ID"
     type: string
     sql: ${TABLE}.SCOPE ;;
     drill_fields: [scope_drill*]
   }
 
   dimension: product_name {
-    description: "Unique ID for each user that has ordered"
+    label: "Product Name"
+    description: "Bigquery : Product Name (Related with SCOPE Dimension)"
     type: string
     sql: ${TABLE}.Product_Name ;;
   }
   dimension: department {
-    description: "Unique ID for each user that has ordered"
+    label: "Department"
+    description: "Bigquery - Department of Predictvie Company"
     type: string
     sql: ${TABLE}.Department ;;
   }
 
   dimension: project_status{
-    description: "project status"
+    label: "Project Status"
+    description: "Custom Dimension : Project Status by Due date"
     type: string
     sql:
     case
@@ -112,19 +127,24 @@ view: project_plan {
 
 
   dimension: IsOverDue {
-    description: "project over due or not"
+    label: "Is Project over due?"
+    description: "Bigquery - Project over due or not"
     type: yesno
     sql:(date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) <= 0  ;;
   }
 
 
   measure: total_mh {
+    label: "Total Manhour"
+    description: "Bigquery - Total Manhour (For sale Customer)"
     type: sum
     sql: ${TABLE}.Total___Manhours ;;
     value_format_name: decimal_2
   }
 
   measure: count {
+    label: "Count"
+    description: "Default Looker : Count it depend on dimension that you've selected"
     type: count
     drill_fields: []
   }
