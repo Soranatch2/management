@@ -2,34 +2,19 @@ view: project_progress {
   sql_table_name: `management_detail.project_progress`
     ;;
 
-  dimension: actual_score {
-    type: number
-    sql: ${TABLE}.actual_score ;;
-  }
-
-  dimension: bd {
-    type: string
-    sql: ${TABLE}.BD ;;
-  }
-
-  dimension: done {
-    type: number
-    sql: ${TABLE}.Done ;;
-  }
-
-  dimension: estimate_manhours {
-    type: number
-    sql: ${TABLE}.estimate_manhours ;;
-  }
-
-  dimension: follow_up_clients {
-    type: number
-    sql: ${TABLE}.Follow_up_Clients ;;
-  }
-
-  dimension: in_progress {
-    type: number
-    sql: ${TABLE}.In_progress ;;
+  dimension_group: project_start {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.project_start ;;
   }
 
   dimension_group: project_end {
@@ -52,30 +37,37 @@ view: project_progress {
     sql: ${TABLE}.project_name ;;
   }
 
-  dimension_group: project_start {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.project_start ;;
+  dimension: bd {
+    type: string
+    sql: ${TABLE}.BD ;;
   }
+
+  dimension: in_progress {
+    type: number
+    sql: ${TABLE}.In_progress ;;
+  }
+
 
   dimension: quality_assurance {
     type: number
     sql: ${TABLE}.Quality_Assurance ;;
   }
 
+  dimension: follow_up_clients {
+    type: number
+    sql: ${TABLE}.Follow_up_Clients ;;
+  }
+
   dimension: ready_to_send {
     type: number
     sql: ${TABLE}.Ready_To_Send ;;
   }
+
+  dimension: done {
+    type: number
+    sql: ${TABLE}.Done ;;
+  }
+
 
   dimension: scope_id {
     type: string
@@ -92,6 +84,12 @@ view: project_progress {
     type: number
     sql: ${TABLE}.percentage_progress ;;
     value_format_name: decimal_2
+    drill_fields: [scope_id,everhour_scope_id.member ,everhour_scope_id.task ,everhour_scope_id.billing ,everhour_scope_id.time]
+  }
+
+  measure: estimate_manhours {
+    type: number
+    sql: ${TABLE}.estimate_manhours ;;
   }
 
   measure: man_day {
@@ -111,6 +109,11 @@ view: project_progress {
   measure: total {
     type: number
     sql: ${TABLE}.total ;;
+  }
+
+  measure: actual_score {
+    type: number
+    sql: ${TABLE}.actual_score ;;
   }
 
   measure: total_score {
