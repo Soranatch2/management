@@ -84,7 +84,7 @@ view: project_progress {
     label: "Total Progress Percentage"
     type: average
     sql: 1.0 * ${TABLE}.actual_score/ nullif(${TABLE}.total_score ,0) ;;
-    value_format_name: percent_1
+    value_format_name: percent_2
     drill_fields: [detail_mh*]
   }
 
@@ -104,7 +104,7 @@ view: project_progress {
     sql: ${TABLE}.man_hour ;;
   }
 
-  measure: manhour_number {
+  measure: actual_manhour {
     type: sum
     sql: ${TABLE}.manhour_number ;;
     value_format_name: decimal_2
@@ -135,6 +135,6 @@ view: project_progress {
   }
 
   set: detail_mh {
-    fields: [scope_id,everhour_scope_id.member ,everhour_scope_id.task ,everhour_scope_id.billing ,everhour_scope_id.time]
+    fields: [scope_id,everhour_dataset.member ,everhour_dataset.task ,everhour_dataset.billing ,everhour_dataset.time]
   }
 }
