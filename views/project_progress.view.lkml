@@ -37,6 +37,15 @@ view: project_progress {
     sql: ${TABLE}.project_name ;;
   }
 
+  dimension: result {
+    type: string
+    sql:
+    case
+    when( ${TABLE}.estimate_manhours - ${TABLE}.manhour_number) > 0 then "Profit"
+    when( ${TABLE}.estimate_manhours - ${TABLE}.manhour_number) <= 0 then "Loss"
+    else "others"
+    end ;;
+  }
   dimension: bd {
     type: string
     sql: ${TABLE}.BD ;;
