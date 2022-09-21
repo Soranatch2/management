@@ -54,3 +54,5 @@ explore: jira_dataset {}
 explore: everhour_time_tracking {}
 
 explore: everhour_dataset {}
+
+explore: project_plan{}
