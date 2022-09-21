@@ -82,7 +82,7 @@ view: project_progress {
 
   measure: percentage_progress {
     label: "Total Progress Percentage"
-    type: number
+    type: average
     sql: 1.0 * ${TABLE}.actual_score/ nullif(${TABLE}.total_score ,0) ;;
     value_format_name: decimal_2
     drill_fields: [scope_id,everhour_scope_id.member ,everhour_scope_id.task ,everhour_scope_id.billing ,everhour_scope_id.time]
