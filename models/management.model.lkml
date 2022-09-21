@@ -16,14 +16,14 @@ explore: project_progress {
 
   join: everhour_dataset {
     type: left_outer
-    view_label: "everhour_scope_id"
+    view_label: "everhour"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = trim(${everhour_dataset.scope_id}) ;;
   }
 
   join: jira_dataset {
     type: left_outer
-    view_label: "scope_id"
+    view_label: "jira"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = ${jira_dataset.scope_id} ;;
   }
