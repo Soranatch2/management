@@ -96,6 +96,7 @@ view: project_plan {
   measure: total_mh {
     type: sum
     sql: ${TABLE}.Total___Manhours ;;
+    value_format_name: percent_2
   }
 
 
