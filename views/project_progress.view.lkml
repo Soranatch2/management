@@ -123,6 +123,10 @@ view: project_progress {
     sql: ${TABLE}.total_score ;;
   }
 
+  measure: calculated_mh {
+    type: sum
+    sql: ${TABLE}.estimate_manhours - ${TABLE}.manhour_number  ;;
+  }
   measure: count {
     type: count
     drill_fields: [project_name]
