@@ -11,7 +11,7 @@ datagroup: management_default_datagroup {
 persist_with: management_default_datagroup
 
 explore: project_progress {
-  label: "(1) Orders, Items and Users"
+  label: "Master_Project"
   view_name: project_progress
 
   join: everhour_dataset {
