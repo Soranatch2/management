@@ -37,7 +37,7 @@ explore: project_progress {
 
   join: project_plan {
     type: left_outer
-    view_label: "scope_id"
+    view_label: "project_plan"
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = ${project_plan.scope_id} ;;
   }
