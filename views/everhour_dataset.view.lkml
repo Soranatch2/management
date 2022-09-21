@@ -52,6 +52,11 @@ view: everhour_dataset {
     sql: ${TABLE}.Time ;;
   }
 
+  dimension: day {
+    type: number
+    sql: ${TABLE}.Day ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []

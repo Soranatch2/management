@@ -135,6 +135,6 @@ view: project_progress {
   }
 
   set: detail_mh {
-    fields: [scope_id,everhour_dataset.member ,everhour_dataset.task ,everhour_dataset.billing ,everhour_dataset.time]
+    fields: [scope_id,everhour_dataset.member ,everhour_dataset.task ,everhour_dataset.billing ,everhour_dataset.time,everhour_dataset.day]
   }
 }
