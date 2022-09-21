@@ -32,26 +32,6 @@ view: project_progress {
     sql: ${TABLE}.In_progress ;;
   }
 
-  dimension: man_day {
-    type: number
-    sql: ${TABLE}.man_day ;;
-  }
-
-  dimension: man_hour {
-    type: string
-    sql: ${TABLE}.man_hour ;;
-  }
-
-  dimension: manhour_number {
-    type: number
-    sql: ${TABLE}.manhour_number ;;
-  }
-
-  dimension: percentage_progress {
-    type: number
-    sql: ${TABLE}.percentage_progress ;;
-  }
-
   dimension_group: project_end {
     type: time
     timeframes: [
@@ -107,12 +87,33 @@ view: project_progress {
     sql: ${TABLE}.scope_ids ;;
   }
 
-  dimension: total {
+
+  measure: percentage_progress {
+    type: number
+    sql: ${TABLE}.percentage_progress ;;
+    value_format_name: decimal_2
+  }
+
+  measure: man_day {
+    type: number
+    sql: ${TABLE}.man_day ;;
+  }
+
+  measure: man_hour {
+    type: string
+    sql: ${TABLE}.man_hour ;;
+  }
+
+  measure: manhour_number {
+    type: number
+    sql: ${TABLE}.manhour_number ;;
+  }
+  measure: total {
     type: number
     sql: ${TABLE}.total ;;
   }
 
-  dimension: total_score {
+  measure: total_score {
     type: number
     sql: ${TABLE}.total_score ;;
   }
