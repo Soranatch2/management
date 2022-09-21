@@ -89,7 +89,7 @@ view: project_progress {
   }
 
   measure: estimate_manhours {
-    type: number
+    type: sum
     sql: ${TABLE}.estimate_manhours ;;
   }
 
