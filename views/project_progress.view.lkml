@@ -85,7 +85,7 @@ view: project_progress {
     type: average
     sql: 1.0 * ${TABLE}.actual_score/ nullif(${TABLE}.total_score ,0) ;;
     value_format_name: percent_1
-    drill_fields: [scope_id,everhour_scope_id.member ,everhour_scope_id.task ,everhour_scope_id.billing ,everhour_scope_id.time]
+    drill_fields: [detail_mh*]
   }
 
   measure: estimate_manhours {
@@ -132,5 +132,9 @@ view: project_progress {
   measure: count {
     type: count
     drill_fields: [project_name]
+  }
+
+  set: detail_mh {
+    fields: [scope_id,everhour_scope_id.member ,everhour_scope_id.task ,everhour_scope_id.billing ,everhour_scope_id.time]
   }
 }

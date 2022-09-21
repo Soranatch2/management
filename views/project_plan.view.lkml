@@ -52,13 +52,14 @@ view: project_plan {
     sql: ${TABLE}.Mentor ;;
   }
 
-  dimension: Clients {
+  dimension: clients {
     description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.Clients ;;
-  }
+    drill_fields: [project_detial*]
+    }
 
-  dimension: Customer_AR {
+  dimension: customer_ar {
     description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.Customer_AR ;;
@@ -76,18 +77,19 @@ view: project_plan {
     sql: ${TABLE}.Project_Name ;;
   }
 
-  dimension: SCOPE {
+  dimension: scope {
     description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.SCOPE ;;
+    drill_fields: [scope_drill*]
   }
 
-  dimension: Product_Name {
+  dimension: product_name {
     description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.Product_Name ;;
   }
-  dimension: Department {
+  dimension: department {
     description: "Unique ID for each user that has ordered"
     type: string
     sql: ${TABLE}.Department ;;
@@ -96,14 +98,19 @@ view: project_plan {
   measure: total_mh {
     type: sum
     sql: ${TABLE}.Total___Manhours ;;
-    value_format_name: percent_2
+    value_format_name: decimal_2
   }
-
-
-
 
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  set: scope_drill {
+    fields: [department,customer_ar,total_mh]
+  }
+
+  set: project_detial {
+    fields: [bd,pm,mentor,project_start_date,project_end_date]
   }
 }
