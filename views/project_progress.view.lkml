@@ -60,7 +60,6 @@ view: project_progress {
     sql: ${TABLE}.In_progress ;;
   }
 
-
   dimension: quality_assurance {
     type: number
     sql: ${TABLE}.Quality_Assurance ;;

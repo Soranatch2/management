@@ -95,6 +95,29 @@ view: project_plan {
     sql: ${TABLE}.Department ;;
   }
 
+  dimension: processing_time {
+    description: "time of project"
+    type: string
+    sql:
+    case
+    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) is null then ""
+    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) between 1 and 30 then "Coming soon"
+    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) > 30 then "Not over due"
+    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) < 0 then "Over due"
+    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) = 0 then "Over due"
+    else "Contact Support"
+    end
+    ;;
+  }
+
+
+  dimension: IsOverDue {
+    description: "time of project"
+    type: yesno
+    sql:(date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) <= 0  ;;
+  }
+
+
   measure: total_mh {
     type: sum
     sql: ${TABLE}.Total___Manhours ;;
