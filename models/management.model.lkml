@@ -4,8 +4,8 @@ connection: "management_detail"
 include: "/views/**/*.view"
 
 datagroup: management_default_datagroup {
-   sql_trigger: SELECT MAX(scope_id) FROM project_progress;;
-  max_cache_age: "1 hour"
+  # sql_trigger: SELECT MAX(scope_id) FROM project_progress;;
+  max_cache_age: "24 hour"
 }
 
 persist_with: management_default_datagroup
