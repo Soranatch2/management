@@ -50,7 +50,7 @@ view: employee_dataset {
     type: string
     sql: ${TABLE}.Work_Email ;;
     action: {
-      label: "Send Emails Warning"
+      label: "Send Email Warning"
       url: "https://segment.com"
       icon_url: "https://logos-world.net/wp-content/uploads/2020/11/Gmail-Logo.png"
       form_url: "https://example.com/ping/{{ value }}/form.json"
