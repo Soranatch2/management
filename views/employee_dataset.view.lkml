@@ -59,15 +59,15 @@ view: employee_dataset {
         value: "value string"
       }
       form_param: {
-        name: "possibly-localized-string"
-        type: string
-        label: "Message Input"
+        name: "name string"
+        type: textarea
+        label: "possibly-localized-string"
         option: {
           name: "name string"
           label: "possibly-localized-string"
         }
         required: yes
-        description: "Welcome"
+        description: "possibly-localized-string"
         default: "string"
       }
       user_attribute_param: {
