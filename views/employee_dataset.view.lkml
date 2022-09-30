@@ -59,7 +59,7 @@ view: employee_dataset {
         value: "value string"
       }
       form_param: {
-        name: "String"
+        name: "possibly-localized-string"
         type: string
         label: "Message Input"
         option: {
