@@ -32,7 +32,7 @@ explore: project_progress {
     type: left_outer
     view_label: "Employee"
     relationship: one_to_many
-    sql_on: ${employee_dataset.employee_name_en} = trim(${everhour_dataset.member}) ;;
+    sql_on: trim(${everhour_dataset.member}) =${employee_dataset.employee_name_en} ;;
   }
 
   join: project_plan {
