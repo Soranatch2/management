@@ -31,8 +31,8 @@ explore: project_progress {
   join: employee_dataset {
     type: left_outer
     view_label: "Employee"
-    relationship: one_to_many
-    sql_on: trim(${everhour_dataset.member}) =${employee_dataset.employee_name_en} ;;
+    relationship: one_to_one
+    sql_on: trim(${everhour_dataset.member}) = ${employee_dataset.employee_name_en} ;;
   }
 
   join: project_plan {
