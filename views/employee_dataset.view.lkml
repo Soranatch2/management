@@ -49,6 +49,32 @@ view: employee_dataset {
     description: "Bigquery : Employye e-Mail "
     type: string
     sql: ${TABLE}.Work_Email ;;
+    action: {
+      label: "Send Emails Warning"
+      url: "https://segment.com"
+      icon_url: "https://logos-world.net/wp-content/uploads/2020/11/Gmail-Logo.png"
+      form_url: "https://example.com/ping/{{ value }}/form.json"
+      param: {
+        name: "name string"
+        value: "value string"
+      }
+      form_param: {
+        name: "name string"
+        type: string
+        label: "possibly-localized-string"
+        option: {
+          name: "name string"
+          label: "possibly-localized-string"
+        }
+        required: yes
+        description: "possibly-localized-string"
+        default: "string"
+      }
+      user_attribute_param: {
+        user_attribute: project_access
+        name: "name_for_json_payload"
+      }
+    }
   }
 
   measure: count {
