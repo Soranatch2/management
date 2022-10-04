@@ -90,6 +90,13 @@ view: everhour_dataset {
     sql: ${TABLE}.Time ;;
   }
 
+  measure: time_duration {
+    label: "Time"
+    description: "Bigquery : Time tracking."
+    type: number
+    sql: ${TABLE}.Time ;;
+  }
+
 
   measure: count {
     label: "Count"
