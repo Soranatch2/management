@@ -55,4 +55,9 @@ view: sql_runner_query_date {
   set: detail {
     fields: [member, day, time]
   }
+
+  measure: times {
+    type: sum
+    sql: ${TABLE}.time ;;
+  }
 }
