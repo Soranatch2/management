@@ -95,7 +95,7 @@ view: everhour_dataset {
     label: "Time"
     description: "Bigquery : Time tracking."
     type: sum
-    sql: ${TABLE}.Time ;;
+    sql: sum(${TABLE}.Time) ;;
   }
 
 
