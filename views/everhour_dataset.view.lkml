@@ -10,6 +10,7 @@ view: everhour_dataset {
       date,
       week,
       month,
+      day_of_week,
       quarter,
       year
     ]
