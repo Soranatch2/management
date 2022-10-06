@@ -11,6 +11,7 @@ view: everhour_time_tracking {
       time,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
