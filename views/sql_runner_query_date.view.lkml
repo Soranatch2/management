@@ -6,8 +6,6 @@ view: sql_runner_query_date {
         sum(Time) AS time
       FROM
         `research-development-361301.management_detail.everhour_dataset`
-      WHERE
-        Day between '2022-09-01' and '2022-09-30'
         group by 1,2
         order by 1
        ;;
