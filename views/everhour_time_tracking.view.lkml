@@ -53,4 +53,12 @@ view: everhour_time_tracking {
     type: count
     drill_fields: []
   }
+
+  measure: manhour_usage {
+    label: "Manhour Usage"
+    description: "Bigquery : Manhour Usage from Everhour Template Report"
+    type:sum
+    sql: ${TABLE}.manhour_number ;;
+  }
+
 }
