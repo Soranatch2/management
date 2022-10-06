@@ -57,5 +57,6 @@ view: sql_runner_query_date {
   measure: times {
     type: sum
     sql: ${TABLE}.time ;;
+    value_format: "0.00"
   }
 }
