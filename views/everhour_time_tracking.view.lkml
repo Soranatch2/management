@@ -57,7 +57,7 @@ view: everhour_time_tracking {
   measure: manhour_usage {
     label: "Manhour Usage"
     description: "Bigquery : Manhour Usage from Everhour Template Report"
-    type:sum
+    type:count
     sql: ${TABLE}.manhour_number ;;
   }
 
