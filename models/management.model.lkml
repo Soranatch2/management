@@ -44,7 +44,10 @@ explore: project_progress {
 
 }
 
-explore: sql_runner_query_date {}
+explore: sql_runner_query_date {
+
+
+}
 
 # explore: jira_dataset {}
 
