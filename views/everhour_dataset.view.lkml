@@ -17,6 +17,7 @@ view: everhour_dataset {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Day ;;
+    drill_fields: [everhour_dataset.member,everhour_dataset.task,everhour_dataset.scope_id]
   }
   dimension: billing {
     label: "Billing Status"
@@ -74,6 +75,7 @@ view: everhour_dataset {
     description: "Bigquery : Task Due Date."
     type: string
     sql: ${TABLE}.Task_Due_Date ;;
+    drill_fields: [everhour_dataset.member,everhour_dataset.task,everhour_dataset.scope_id]
   }
 
 
@@ -96,6 +98,7 @@ view: everhour_dataset {
     description: "Bigquery : Time tracking."
     type: sum
     sql: (${TABLE}.Time) ;;
+    drill_fields: [everhour_dataset.member,everhour_dataset.task,everhour_dataset.scope_id,everhour_dataset.time]
   }
 
 
@@ -103,6 +106,6 @@ view: everhour_dataset {
     label: "Count"
     description: "Bigquery : Count it, Depend on dimension that you've selected."
     type: count
-    drill_fields: []
+    drill_fields: [everhour_dataset.member,everhour_dataset.task,everhour_dataset.scope_id,everhour_dataset.time]
   }
 }

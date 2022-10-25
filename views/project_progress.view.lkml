@@ -2,46 +2,15 @@ view: project_progress {
   sql_table_name: `management_detail.project_progress`
     ;;
 
-  dimension_group: project_start {
-    label: "Project Start Date"
-    description: "Bigquery : Project Start date"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.project_start ;;
-  }
 
-  dimension_group: project_end {
-    label: "Project End Date"
-    description: "Bigquery : Project End Date"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.Project__End_Date;;
-  }
-
-  dimension: project_name {
-    label: "Project Name"
-    description: "Bigquery : Project Name"
+  dimension: qt_number {
+    label: "Quotation Number"
+    description: "Bigquery : Quotation Number"
     type: string
-    sql: ${TABLE}.project_name ;;
+    sql: ${TABLE}.qt_number ;;
+    drill_fields: [scope_id,project_plan.BD]
   }
+
 
 # NULLIF(${sale_price},0)
   dimension: result {
@@ -57,12 +26,6 @@ view: project_progress {
     when(project_plan.Total___Manhours - ${TABLE}.manhour_number) = 0.00 then "Loss"
     else "Others"
     end ;;
-  }
-  dimension: bd {
-    label: "Business Development Name"
-    description: "Bigquery : Business Development who resposible this project."
-    type: string
-    sql: ${TABLE}.BD ;;
   }
 
   dimension: in_progress {
@@ -100,21 +63,12 @@ view: project_progress {
     sql: ${TABLE}.Done ;;
   }
 
-
   dimension: scope_id {
     label: "Scope ID"
     description: "Bigquery : Scope ID from Jira Dataset (Orignal)"
     type: string
     sql: ${TABLE}.scope_id ;;
   }
-
-  dimension: scope_ids {
-    label: "Scope ID 2"
-    description: "Bigquery : Scope ID from Everhour Dataset (Left Join on Bigquery)"
-    type: string
-    sql: ${TABLE}.scope_ids ;;
-  }
-
 
   measure: percentage_progress {
     label: "Total Progress Percentage"
@@ -123,14 +77,6 @@ view: project_progress {
     sql: 1.0 * ${TABLE}.actual_score/ nullif(${TABLE}.total_score ,0) ;;
     value_format_name: percent_2
     drill_fields: [detail_mh*]
-  }
-
-  measure: estimate_manhours {
-    label: "Estimate Manhours"
-    description: "Bigquery : Estimate Manhour from Jira Task status"
-    type: sum
-    sql: ${TABLE}.estimate_manhours ;;
-    value_format_name: decimal_2
   }
 
   measure: man_day {
@@ -157,7 +103,7 @@ view: project_progress {
   measure: total {
     label: "Total"
     description: "Biquery : Total"
-    hidden: yes
+    # hidden: yes
     type: sum
     sql: ${TABLE}.total ;;
   }
@@ -187,7 +133,6 @@ view: project_progress {
     label: "Count"
     description: "Default Looker : Count it Depend on dimesion that you've selected"
     type: count
-    drill_fields: [project_name]
   }
 
   set: detail_mh {
