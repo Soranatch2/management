@@ -1,4 +1,4 @@
-connection: "management_detail"
+connection: "management_details"
 
 # include all the views
 include: "/views/**/*.view"
