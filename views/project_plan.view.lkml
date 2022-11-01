@@ -63,7 +63,7 @@ view: project_plan {
     label: "Client Name"
     description: "Bigquery : Client Name"
     type: string
-    sql: ${TABLE}.Clients ;;
+    sql: ${TABLE}.Client ;;
     drill_fields: [project_detial*]
     }
 
