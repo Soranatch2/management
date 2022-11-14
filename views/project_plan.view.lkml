@@ -38,12 +38,44 @@ view: project_plan {
     sql: ${TABLE}.Project__End_Date ;;
   }
 
+  dimension_group: Forecast_End_Date {
+    label: "Project Forecast End Date"
+    description: "Bigquery : Project Forecast End Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Forecast_End_Date ;;
+  }
+
   dimension: bd {
     label: "Business Development Name"
     description: "Bigquery : Business Development who responsible for this project"
     type: string
     sql: ${TABLE}.BD ;;
   }
+
+  dimension: project_status_pm{
+    label: "Project Status"
+    description: "Bigquery : Project Status from PM Update"
+    type: string
+    sql: ${TABLE}.Project_status ;;
+  }
+
+  dimension: pillar{
+    label: "Team Pillar"
+    description: "Bigquery : Pillar updated from ALL Project"
+    type: string
+    sql: ${TABLE}.Pillar_ ;;
+  }
+
 
   dimension:pm {
     label: "Project Development Name"
