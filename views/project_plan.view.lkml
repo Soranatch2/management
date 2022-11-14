@@ -99,6 +99,21 @@ view: project_plan {
     drill_fields: [project_detial*]
     }
 
+  dimension: client_prefix {
+    label: "Client Sub Project"
+    description: "Bigquery : Client sub project"
+    type: string
+    sql: ${TABLE}.client_prefix ;;
+  }
+
+  dimension: client_company {
+    label: "Client Company"
+    description: "Bigquery : Client Company Level"
+    type: string
+    sql: ${TABLE}.client_company ;;
+  }
+
+
   dimension: customer_ar {
     label: "Customer AR"
     description: "Bigquery : Customer Full Name"
