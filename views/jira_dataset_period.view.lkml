@@ -1,6 +1,6 @@
 view: jira_dataset_period {
   # You can specify the table name if it's different from the view name:
-  sql_table_name: `management_detail.jira_dataset` ;;
+  sql_table_name: `management_detail.jira_dataset_period` ;;
   #
   # # Define your dimensions and measures here, like this:
   dimension: scope_ids {
