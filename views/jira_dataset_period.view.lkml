@@ -16,12 +16,7 @@ view: jira_dataset_period {
     sql: ${TABLE}.update_date ;;
   }
 
-  dimension: actual_score {
-    label: "Actual Score"
-    description: "Bigquery : Actual score by Jira Task Status * Task Scoring"
-    type: number
-    sql: ${TABLE}.actual_score ;;
-  }
+
 
   dimension: in_progress {
     label: "In Progress"
@@ -59,27 +54,34 @@ view: jira_dataset_period {
     sql: ${TABLE}.Done ;;
   }
 
-
-  dimension: percentage_progress {
-    label: "Percentage Progress"
-    description: "Bigquery : Percentage of Project completion"
-    type: number
-    sql: ${TABLE}.percentage_progress ;;
-  }
-
-  dimension: total {
-    hidden: yes
+  measure: total {
     label: "Total"
-    description: "Bigquery : Total"
-    type: number
+    description: "Biquery : Total"
+    # hidden: yes
+    type: sum
     sql: ${TABLE}.total ;;
   }
 
-  dimension: total_score {
+  measure: actual_score {
+    label: "Actual Score"
+    description: "Bigquery : Actual Score from Calculated by Task Status * Task Scoring"
+    type: sum
+    sql: ${TABLE}.actual_score ;;
+  }
+
+  measure: total_score {
     label: "Total Score"
-    description: "Bigquery : Total Score ,Calculated from Number of Task * 5"
-    type: number
+    description: "Bigquery : Total Score from Calcaluted by Number of Task * 5"
+    type: sum
     sql: ${TABLE}.total_score ;;
+  }
+
+  measure: percentage_progress {
+    label: "Total Progress Percentage"
+    description: "Custom Measure : Percentage of Project Completion"
+    type: average
+    sql: 1.0 * ${TABLE}.actual_score/ nullif(${TABLE}.total_score ,0) ;;
+    value_format_name: percent_2
   }
 
   measure: count {
