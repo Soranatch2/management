@@ -178,7 +178,7 @@ view: project_plan {
     description: "Bigquery - Project over due or not"
     type: yesno
     sql:(date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) <= 0  ;;
-    drill_fields: [project_detial*]
+    drill_fields: [project_overdue*]
   }
 
 
@@ -203,5 +203,9 @@ view: project_plan {
 
   set: project_detial {
     fields: [bd,pm,mentor,project_start_date,project_end_date]
+  }
+
+  set: project_overdue {
+    fields: [project_name,clients,count]
   }
 }
