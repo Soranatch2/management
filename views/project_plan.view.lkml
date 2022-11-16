@@ -63,7 +63,7 @@ view: project_plan {
   }
 
   dimension: project_status_pm{
-    label: "Project Status"
+    label: "Project Status PM"
     description: "Bigquery : Project Status from PM Update"
     type: string
     sql: ${TABLE}.Project_status ;;
@@ -157,7 +157,7 @@ view: project_plan {
   }
 
   dimension: project_status{
-    label: "Project Status"
+    label: "Project Status From plan"
     description: "Custom Dimension : Project Status by Due date"
     type: string
     sql:
@@ -178,6 +178,7 @@ view: project_plan {
     description: "Bigquery - Project over due or not"
     type: yesno
     sql:(date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) <= 0  ;;
+    drill_fields: [project_detial*]
   }
 
 
