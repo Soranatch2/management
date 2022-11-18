@@ -36,9 +36,9 @@ view: project_plan {
     datatype: date
     description: "Bigquery : Project End Date Max(Forecast , AllProject)"
     sql: case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
-          else COALESCE(Project__End_Date , Forecast_End_Date)
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
           end ;;
 
 
@@ -186,29 +186,29 @@ view: project_plan {
     sql:
     case
     when (date_diff(case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
           else COALESCE(Project__End_Date , Forecast_End_Date)
           end , (current_date()-1), day)) is null then "End date missing"
     when (date_diff(case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
-          else COALESCE(Project__End_Date , Forecast_End_Date)
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(Project__End_Date , ${TABLE}.Forecast_End_Date)
           end , (current_date()-1), day)) between 1 and 30 then "Coming soon"
     when (date_diff(case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
-          else COALESCE(Project__End_Date , Forecast_End_Date)
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
           end , (current_date()-1), day)) > 30 then "Not over due"
     when (date_diff(case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
-          else COALESCE(Project__End_Date , Forecast_End_Date)
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
           end , (current_date()-1), day)) < 0 then "Over due"
     when (date_diff(case
-          when project__End_Date > Forecast_End_Date then Project__End_Date
-          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
-          else COALESCE(Project__End_Date , Forecast_End_Date)
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
           end , (current_date()-1), day)) = 0 then "Over due"
     else "Contact Support"
     end
