@@ -21,6 +21,29 @@ view: project_plan {
     sql: ${TABLE}.Project__Start_Date ;;
   }
 
+  dimension_group: predict_end_date {
+    label: "Predict End Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    description: "Bigquery : Project End Date Max(Forecast , AllProject)"
+    sql: case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end ;;
+
+
+    }
+
   dimension_group: project_end {
     label: "Project End Date"
     description: "Bigquery : Project End Date"
@@ -162,15 +185,37 @@ view: project_plan {
     type: string
     sql:
     case
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) is null then "End date missing"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) between 1 and 30 then "Coming soon"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) > 30 then "Not over due"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) < 0 then "Over due"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) = 0 then "Over due"
+    when (date_diff(case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) is null then "End date missing"
+    when (date_diff(case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) between 1 and 30 then "Coming soon"
+    when (date_diff(case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) > 30 then "Not over due"
+    when (date_diff(case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) < 0 then "Over due"
+    when (date_diff(case
+          when project__End_Date > Forecast_End_Date then Project__End_Date
+          when Forecast_End_Date >= project__End_Date then Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) = 0 then "Over due"
     else "Contact Support"
     end
     ;;
   }
+
+
 
 
   dimension: IsOverDue {
