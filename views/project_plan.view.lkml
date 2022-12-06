@@ -21,6 +21,29 @@ view: project_plan {
     sql: ${TABLE}.Project__Start_Date ;;
   }
 
+  dimension_group: predict_end_date {
+    label: "Predict End Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    description: "Bigquery : Project End Date Max(Forecast , AllProject)"
+    sql: case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
+          end ;;
+
+
+    }
+
   dimension_group: project_end {
     label: "Project End Date"
     description: "Bigquery : Project End Date"
@@ -38,12 +61,44 @@ view: project_plan {
     sql: ${TABLE}.Project__End_Date ;;
   }
 
+  dimension_group: Forecast_End_Date {
+    label: "Project Forecast End Date"
+    description: "Bigquery : Project Forecast End Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Forecast_End_Date ;;
+  }
+
   dimension: bd {
     label: "Business Development Name"
     description: "Bigquery : Business Development who responsible for this project"
     type: string
     sql: ${TABLE}.BD ;;
   }
+
+  dimension: project_status_pm{
+    label: "Project Status PM"
+    description: "Bigquery : Project Status from PM Update"
+    type: string
+    sql: ${TABLE}.Project_status ;;
+  }
+
+  dimension: pillar{
+    label: "Team Pillar"
+    description: "Bigquery : Pillar updated from ALL Project"
+    type: string
+    sql: ${TABLE}.Pillar_ ;;
+  }
+
 
   dimension:pm {
     label: "Project Development Name"
@@ -63,9 +118,24 @@ view: project_plan {
     label: "Client Name"
     description: "Bigquery : Client Name"
     type: string
-    sql: ${TABLE}.Clients ;;
+    sql: ${TABLE}.Client ;;
     drill_fields: [project_detial*]
     }
+
+  dimension: client_prefix {
+    label: "Client Sub Project"
+    description: "Bigquery : Client sub project"
+    type: string
+    sql: ${TABLE}.client_prefix ;;
+  }
+
+  dimension: client_company {
+    label: "Client Company"
+    description: "Bigquery : Client Company Level"
+    type: string
+    sql: ${TABLE}.client_company ;;
+  }
+
 
   dimension: customer_ar {
     label: "Customer AR"
@@ -110,20 +180,42 @@ view: project_plan {
   }
 
   dimension: project_status{
-    label: "Project Status"
+    label: "Project Status From plan"
     description: "Custom Dimension : Project Status by Due date"
     type: string
     sql:
     case
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) is null then "End date missing"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) between 1 and 30 then "Coming soon"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) > 30 then "Not over due"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) < 0 then "Over due"
-    when (date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) = 0 then "Over due"
+    when (date_diff(case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(Project__End_Date , Forecast_End_Date)
+          end , (current_date()-1), day)) is null then "End date missing"
+    when (date_diff(case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(Project__End_Date , ${TABLE}.Forecast_End_Date)
+          end , (current_date()-1), day)) between 1 and 30 then "Coming soon"
+    when (date_diff(case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
+          end , (current_date()-1), day)) > 30 then "Not over due"
+    when (date_diff(case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
+          end , (current_date()-1), day)) < 0 then "Over due"
+    when (date_diff(case
+          when ${TABLE}.project__End_Date > ${TABLE}.Forecast_End_Date then ${TABLE}.Project__End_Date
+          when ${TABLE}.Forecast_End_Date >= ${TABLE}.project__End_Date then ${TABLE}.Forecast_End_Date
+          else COALESCE(${TABLE}.Project__End_Date , ${TABLE}.Forecast_End_Date)
+          end , (current_date()-1), day)) = 0 then "Over due"
     else "Contact Support"
     end
     ;;
   }
+
+
 
 
   dimension: IsOverDue {
@@ -131,6 +223,7 @@ view: project_plan {
     description: "Bigquery - Project over due or not"
     type: yesno
     sql:(date_diff(${TABLE}.Project__End_Date, (current_date()-1), day)) <= 0  ;;
+    drill_fields: [project_overdue*]
   }
 
 
@@ -155,5 +248,9 @@ view: project_plan {
 
   set: project_detial {
     fields: [bd,pm,mentor,project_start_date,project_end_date]
+  }
+
+  set: project_overdue {
+    fields: [project_name,clients,count]
   }
 }

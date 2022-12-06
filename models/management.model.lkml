@@ -42,6 +42,13 @@ explore: project_progress {
     sql_on: ${project_progress.scope_id} = ${project_plan.scope_id} ;;
   }
 
+  join: jira_dataset_period {
+    type: left_outer
+    view_label: "Jira History"
+    relationship: one_to_many
+    sql_on: ${jira_dataset.scope_id} = ${jira_dataset_period.scope_ids} ;;
+  }
+
 }
 
 explore: sql_runner_query_date {
