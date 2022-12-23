@@ -68,6 +68,12 @@ view: project_progress {
     description: "Bigquery : Scope ID from Jira Dataset (Orignal)"
     type: string
     sql: ${TABLE}.scope_id ;;
+    tags: ["string"]
+    link: {
+      label: "User Lookup Dashboard"
+      url: "/dashboards/30?Billing=&Scope%20ID={{ project_progress.scope_id }}"
+      icon_url: "https://www.looker.com/static/assets/looker_logo_meta.png"
+    }
   }
 
   measure: percentage_progress {

@@ -118,7 +118,7 @@ view: project_plan {
     label: "Client Name"
     description: "Bigquery : Client Name"
     type: string
-    sql: ${TABLE}.Client ;;
+    sql: ${TABLE}.Clients ;;
     drill_fields: [project_detial*]
     }
 
@@ -149,6 +149,12 @@ view: project_plan {
     description: "Bigquery : Scope ID from project plan Google Sheet"
     type: string
     sql: ${TABLE}.Scope_ID ;;
+    tags: ["string"]
+    link: {
+      label: "User Lookup Dashboard"
+      url: "/dashboards/30?Billing=&Scope%20ID={{ project_progress.scope_id }}"
+      icon_url: "https://www.looker.com/static/assets/looker_logo_meta.png"
+    }
   }
 
   dimension: project_name {
@@ -247,7 +253,7 @@ view: project_plan {
   }
 
   set: project_detial {
-    fields: [bd,pm,mentor,project_start_date,project_end_date]
+    fields: [bd,pm,mentor,project_start_date,project_end_date,client_prefix]
   }
 
   set: project_overdue {
