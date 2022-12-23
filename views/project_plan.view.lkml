@@ -149,6 +149,12 @@ view: project_plan {
     description: "Bigquery : Scope ID from project plan Google Sheet"
     type: string
     sql: ${TABLE}.Scope_ID ;;
+    tags: ["string"]
+    link: {
+      label: "User Lookup Dashboard"
+      url: "/dashboards/30?Billing=&Scope%20ID={{ project_progress.scope_id }}"
+      icon_url: "https://www.looker.com/static/assets/looker_logo_meta.png"
+    }
   }
 
   dimension: project_name {
