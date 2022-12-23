@@ -247,7 +247,7 @@ view: project_plan {
   }
 
   set: project_detial {
-    fields: [bd,pm,mentor,project_start_date,project_end_date]
+    fields: [bd,pm,mentor,project_start_date,project_end_date,client_prefix]
   }
 
   set: project_overdue {
