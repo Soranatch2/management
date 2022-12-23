@@ -17,7 +17,7 @@ explore: project_progress {
   join: everhour_dataset {
     type: left_outer
     view_label: "Everhour"
-    relationship: one_to_one
+    relationship: one_to_many
     sql_on: ${project_progress.scope_id} = trim(${everhour_dataset.scope_id}) ;;
   }
 
