@@ -20,6 +20,12 @@ explore: project_progress {
     relationship: one_to_one
     sql_on: ${project_progress.scope_id} = trim(${everhour_dataset.scope_id}) ;;
   }
+  #   join: everhour_dataset {
+  #   type: left_outer
+  #   view_label: "Everhour"
+  #   relationship: one_to_many
+  #   sql_on: ${project_plan.scope_id} = trim(${everhour_dataset.scope_id}) ;;
+  # }
 
   join: jira_dataset {
     type: left_outer
