@@ -76,6 +76,13 @@ view: project_progress {
     }
   }
 
+  dimension: pillar{
+    label: "Team Pillar"
+    description: "Bigquery : Pillar updated from ALL Project - unique scope id"
+    type: string
+    sql: ${TABLE}.Pillar_ ;;
+  }
+
   measure: percentage_progress {
     label: "Total Progress Percentage"
     description: "Custom Measure : Percentage of Project Completion"

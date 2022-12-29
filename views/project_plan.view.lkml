@@ -145,6 +145,7 @@ view: project_plan {
   }
 
   dimension: scope_id {
+    primary_key: yes
     label: "Scope ID"
     description: "Bigquery : Scope ID from project plan Google Sheet"
     type: string
