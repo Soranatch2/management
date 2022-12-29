@@ -55,6 +55,10 @@ explore: sql_runner_query_date {
 
 
 }
+explore: sql_runner_analytics_budget {
+
+
+}
 
 # explore: jira_dataset {}
 
