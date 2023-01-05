@@ -78,6 +78,24 @@ view: project_plan {
     sql: ${TABLE}.Forecast_End_Date ;;
   }
 
+  dimension_group: sale_date_active {
+    label: "Sale Date"
+    description: "Bigquery : Sale Year + Month + Day01"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.sales_date_active ;;
+  }
+
+
   dimension: bd {
     label: "Business Development Name"
     description: "Bigquery : Business Development who responsible for this project"
@@ -185,6 +203,12 @@ view: project_plan {
     type: string
     sql: ${TABLE}.Department ;;
   }
+  # dimension: service {
+  #   label: "Department"
+  #   description: "Bigquery - Department of Predictvie Company"
+  #   type: string
+  #   sql: ${TABLE}.Department ;;
+  # }
 
   dimension: project_status{
     label: "Project Status From plan"

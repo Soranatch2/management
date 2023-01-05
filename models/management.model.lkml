@@ -62,7 +62,12 @@ explore: sql_runner_query_date {
 
 }
 explore: sql_runner_analytics_budget {
-
+  # join: project_plan {
+  #   type: left_outer
+  #   view_label: "Project"
+  #   relationship: one_to_many
+  #   sql_on: ${sql_runner_analytics_budget.mentor} = ${project_plan.mentor} ;;
+  # }
 
 }
 
