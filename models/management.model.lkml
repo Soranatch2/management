@@ -70,6 +70,9 @@ explore: sql_runner_analytics_budget {
   # }
 
 }
+explore: sql_runner_query_revenue{
+
+}
 
 # explore: jira_dataset {}
 
