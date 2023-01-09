@@ -37,6 +37,7 @@ view: sql_runner_query_revenue {
   measure: price_after_discount__exclude_vat_ {
     type: sum
     sql: ${TABLE}.Price_after_Discount__Exclude_Vat_ ;;
+    drill_fields: [detail*]
   }
 
   # dimension: total___manhours {
@@ -74,7 +75,7 @@ view: sql_runner_query_revenue {
       clients,
       price_after_discount__exclude_vat_,
       total___manhours,
-      manhour_number
+      manhour_number,
     ]
   }
 }
