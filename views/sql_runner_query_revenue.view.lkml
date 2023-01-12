@@ -5,7 +5,7 @@ view: sql_runner_query_revenue {
       table2 as (
       SELECT * FROM `research-development-361301.management_detail.everhour_time_tracking`
       )
-      select table1.scope_id,client_company, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date as date from table1
+      select table1.scope_id,client_company, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date, Forecast_End_Date,sales_date_active, Project__End_Date from table1
       LEFT JOIN table2 ON table1.scope_id = table2.scope_id
       ;;
   }
@@ -15,8 +15,8 @@ view: sql_runner_query_revenue {
     drill_fields: [detail*]
   }
 
-  dimension_group: day {
-    label: "Project Start Date"
+  dimension_group: project_start_day {
+    label: "Project Start"
     description: "Bigquery : Project Start Date"
     type: time
     timeframes: [
@@ -30,8 +30,64 @@ view: sql_runner_query_revenue {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.Project__Start_Date ;;
   }
+
+  dimension_group: project_end_day {
+    label: "Project End"
+    description: "Bigquery : Project End Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_week,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Project__End_Date ;;
+  }
+
+  dimension_group: sale_day {
+    label: "Sale"
+    description: "Bigquery : Sale Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_week,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.sales_date_active ;;
+  }
+
+  dimension_group: forecast_end_day {
+    label: "Forecast End"
+    description: "Bigquery : Sale Date"
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      day_of_week,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.Forecast_End_Date ;;
+  }
+
+
 
   dimension: scope_id {
     type: string
@@ -96,7 +152,7 @@ view: sql_runner_query_revenue {
       scope_id,
       client_company,
       clients,
-      day_date,
+      project_start_day_date,
       price_after_discount__exclude_vat_,
       total___manhours,
       manhour_number
