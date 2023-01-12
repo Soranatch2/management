@@ -96,9 +96,10 @@ view: sql_runner_query_revenue {
       scope_id,
       client_company,
       clients,
+      day_date,
       price_after_discount__exclude_vat_,
       total___manhours,
-      manhour_number,
+      manhour_number
     ]
   }
 }
