@@ -5,7 +5,7 @@ view: sql_runner_query_revenue {
       table2 as (
       SELECT * FROM `research-development-361301.management_detail.everhour_time_tracking`
       )
-      select table1.scope_id,client_company, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date, Forecast_End_Date,sales_date_active, Project__End_Date from table1
+      select table1.scope_id,client_company, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date,sales_date_active, Project__End_Date, coalesce(Forecast_End_Date,Project__End_Date) as Forecast_End_Dates from table1
       LEFT JOIN table2 ON table1.scope_id = table2.scope_id
       ;;
   }
@@ -84,9 +84,8 @@ view: sql_runner_query_revenue {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.Forecast_End_Date ;;
+    sql: ${TABLE}.Forecast_End_Dates ;;
   }
-
 
 
   dimension: scope_id {
@@ -104,34 +103,6 @@ view: sql_runner_query_revenue {
     sql: ${TABLE}.Clients ;;
   }
 
-  # dimension: price_after_discount__exclude_vat_ {
-  #   type: number
-  #   sql: ${TABLE}.Price_after_Discount__Exclude_Vat_ ;;
-  # }
-  measure: price_after_discount__exclude_vat_ {
-    type: sum
-    sql: ${TABLE}.Price_after_Discount__Exclude_Vat_ ;;
-    drill_fields: [detail*]
-  }
-
-  # dimension: total___manhours {
-  #   type: number
-  #   sql: ${TABLE}.Total___Manhours ;;
-  # }
-  measure: total___manhours {
-    type: sum
-    sql: ${TABLE}.Total___Manhours ;;
-  }
-
-  # dimension: manhour_number {
-  #   type: number
-  #   sql: ${TABLE}.manhour_number ;;
-  # }
-  measure: manhour_number {
-    type: sum
-    sql: ${TABLE}.manhour_number ;;
-  }
-
   dimension: pillar {
     type: string
     sql: ${TABLE}.pillar_;;
@@ -147,15 +118,39 @@ view: sql_runner_query_revenue {
     sql:${TABLE}.Service;;
   }
 
+  measure: price_after_discount__exclude_vat_ {
+    type: sum
+    sql: ${TABLE}.Price_after_Discount__Exclude_Vat_ ;;
+    drill_fields: [detail*]
+  }
+
+  measure: total___manhours {
+    type: sum
+    sql: ${TABLE}.Total___Manhours ;;
+  }
+
+  measure: manhour_number {
+    type: sum
+    sql: ${TABLE}.manhour_number ;;
+  }
+
+  measure: gross_profit {
+    type: number
+    sql: ${price_after_discount__exclude_vat_}-350*${manhour_number} ;;
+  }
+
   set: detail {
     fields: [
       scope_id,
       client_company,
       clients,
-      project_start_day_date,
+      sale_day_date,
+      forecast_end_day_date,
       price_after_discount__exclude_vat_,
       total___manhours,
-      manhour_number
+      manhour_number,
+      gross_profit
+
     ]
   }
 }
