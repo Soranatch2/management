@@ -5,7 +5,7 @@ view: sql_runner_query_revenue {
       table2 as (
       SELECT * FROM `research-development-361301.management_detail.everhour_time_tracking`
       )
-      select table1.scope_id,client_company, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date,sales_date_active, Project__End_Date, coalesce(Forecast_End_Date,Project__End_Date) as Forecast_End_Dates, client_prefix,Project_status,Product_Name from table1
+      select table1.scope_id,client_company,BD, Clients, Price_after_Discount__Exclude_Vat_, Total___Manhours, table2.manhour_number, Service_Type,pillar_, service, Project__Start_Date,sales_date_active, Project__End_Date, coalesce(Forecast_End_Date,Project__End_Date) as Forecast_End_Dates, client_prefix,Project_status,Product_Name from table1
       LEFT JOIN table2 ON table1.scope_id = table2.scope_id
       ;;
   }
