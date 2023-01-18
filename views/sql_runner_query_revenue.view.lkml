@@ -61,7 +61,7 @@ view: sql_runner_query_revenue {
       week,
       month,
       day_of_week,
-      quarter,
+      quarter_of_year,
       year
     ]
     convert_tz: no
