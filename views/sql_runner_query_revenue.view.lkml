@@ -88,6 +88,12 @@ view: sql_runner_query_revenue {
     sql: ${TABLE}.Forecast_End_Dates ;;
   }
 
+  dimension: bd {
+    label: "Business Development Name"
+    description: "Bigquery : Business Development who responsible for this project"
+    type: string
+    sql: ${TABLE}.BD ;;
+  }
 
   dimension: scope_id {
     label: "Scope ID"
