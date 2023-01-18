@@ -60,6 +60,7 @@ view: sql_runner_query_revenue {
       date,
       week,
       month,
+      quarter,
       day_of_week,
       quarter_of_year,
       year
