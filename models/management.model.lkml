@@ -71,6 +71,10 @@ explore: sql_runner_analytics_budget {
 
 }
 explore: sql_runner_query_revenue{
+  access_filter: {
+    field: pillar
+    user_attribute: employee_type
+  }
 
 }
 
