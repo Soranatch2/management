@@ -195,7 +195,7 @@ view: project_plan {
     label: "Product Name"
     description: "Bigquery : Product Name (Related with SCOPE Dimension)"
     type: string
-    sql: ${TABLE}.Product_Name ;;
+    sql: ${TABLE}.Product_Name_ ;;
   }
   dimension: department {
     label: "Department"
