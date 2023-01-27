@@ -266,6 +266,7 @@ view: project_plan {
     value_format_name: decimal_2
   }
 
+
   measure: count {
     label: "Count"
     description: "Default Looker : Count it depend on dimension that you've selected"

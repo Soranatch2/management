@@ -159,12 +159,20 @@ view: sql_runner_query_revenue {
     drill_fields: [detail*]
   }
 
+  # measure: total___manhours {
+  #   label: "Total Manhours"
+  #   description: "Bigquery : Total Manhours by BD"
+  #   type: sum
+  #   sql: ${TABLE}.Total___Manhours ;;
+  # }
+
   measure: total___manhours {
-    label: "Total Manhours"
-    description: "Bigquery : Total Manhours by BD"
+    label: "Total Manhour"
     type: sum
-    sql: ${TABLE}.Total___Manhours ;;
+    sql: IF(${service_type} = 'Tools', 0,${TABLE}.Total___Manhours) ;;
   }
+
+
 
   measure: manhour_number {
     label: "Actual Manhours"
