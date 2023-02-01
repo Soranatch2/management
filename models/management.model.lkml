@@ -78,6 +78,19 @@ explore: sql_runner_query_revenue{
 
 }
 
+explore: sql_runner_query_budget_cost {
+  label: "Budget Cost-Revenue"
+  view_label: "Budget Cost"
+  view_name: sql_runner_query_budget_cost
+
+  join: sql_runner_query_budget_revenue {
+    view_label: "Budget Revenue"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${sql_runner_query_budget_cost.Month_date} = ${sql_runner_query_budget_revenue.Month_date} and ${sql_runner_query_budget_cost.pillar} = ${sql_runner_query_budget_revenue.pillar} ;;
+  }
+  }
+
 # explore: jira_dataset {}
 
 # explore: everhour_time_tracking {}
