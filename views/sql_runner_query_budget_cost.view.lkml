@@ -105,6 +105,13 @@ view: sql_runner_query_budget_cost {
     sql: ${TABLE}.common_expenses_admin_target ;;
   }
 
+  measure: common_expenses_admin_actual {
+    label: "Admin Actual"
+    description: "Google Sheet : Admin ส่วนกลาง Target"
+    type: sum
+    sql: ${TABLE}.common_expenses_admin_actual ;;
+  }
+
   set: detail {
     fields: [
       Month_date,

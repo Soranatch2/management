@@ -62,6 +62,14 @@ view: sql_runner_query_budget_revenue {
     sql: ${TABLE}.Target ;;
   }
 
+  measure: actual {
+    label: "Revenue (Actual)"
+    description: "Google Sheet : Revenue Target"
+    type: sum
+    sql: ${TABLE}.Actual ;;
+
+  }
+
   set: detail {
     fields: [service, account_no, pillar, target]
   }
