@@ -62,7 +62,7 @@ view: sql_runner_query_budget_revenue {
     description: "Google Sheet : Revenue Target"
     type:sum
     sql: ${TABLE}.Target;;
-    value_format:"0.###"
+    value_format: "#,##0.00"
 
   }
 
@@ -71,7 +71,7 @@ view: sql_runner_query_budget_revenue {
     description: "Google Sheet : Revenue Target"
     type: sum
     sql: ${TABLE}.Actual;;
-    value_format:"0.###"
+    value_format: "#,##0.00"
 
 
   }
