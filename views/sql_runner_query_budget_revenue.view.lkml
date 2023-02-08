@@ -53,7 +53,9 @@ view: sql_runner_query_budget_revenue {
     sql:
     case when ${TABLE}.Pillar ="A" then "Customer Analytics"
     when ${TABLE}.Pillar ="B" then "Customer Activation"
-    else "Others"
+    when ${TABLE}.Pillar ="C" then "Software Development"
+    when ${TABLE}.Pillar ="D" then "Product Development"
+    else "Quality Assurance"
     end;;
   }
 

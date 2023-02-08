@@ -32,13 +32,14 @@ view: sql_runner_query_budget_cost {
 
   dimension: pillar {
     label: "Pillar"
-    description: "Google Sheet : Pillar Cost"
+    description: "Google Sheet: Pillar Revenue"
     type: string
     sql:
-    case
-    when ${TABLE}.Pillar ="A" then "Customer Analytics"
+    case when ${TABLE}.Pillar ="A" then "Customer Analytics"
     when ${TABLE}.Pillar ="B" then "Customer Activation"
-    else "Others"
+    when ${TABLE}.Pillar ="C" then "Software Development"
+    when ${TABLE}.Pillar ="D" then "Product Development"
+    else "Quality Assurance"
     end;;
   }
 
