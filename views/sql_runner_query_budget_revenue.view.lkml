@@ -59,14 +59,18 @@ view: sql_runner_query_budget_revenue {
     label: "Revenue (Target)"
     description: "Google Sheet : Revenue Target"
     type:sum
-    sql: ${TABLE}.Target ;;
+    sql: ${TABLE}.Target
+    value_format:"0.###";;
+
   }
 
   measure: actual {
     label: "Revenue (Actual)"
     description: "Google Sheet : Revenue Target"
     type: sum
-    sql: ${TABLE}.Actual ;;
+    sql: ${TABLE}.Actual
+    value_format:"0.###";;
+
 
   }
 
