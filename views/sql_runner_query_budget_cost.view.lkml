@@ -74,19 +74,18 @@ view: sql_runner_query_budget_cost {
     value_format: "#,##0.00"
     }
 
-  measure: common_expenses_selling_team_target {
+  measure: cost_selling_team_target {
     label: "Selling Team (Target)"
     description: "Google Sheet : Selling Team Target"
     type: sum
-    sql: ${TABLE}.common_expenses_selling_team_target;;
+    sql: ${TABLE}.cost_selling_team_target;;
     value_format: "#,##0.00"
   }
-
-  measure: common_expenses_team_actual {
+  measure: cost_selling_team_actual {
     label: "Selling Team (Actual)"
-    description: "Google Sheet : Selling Team Actual"
+    description: "Google Sheet : Selling Team Target"
     type: sum
-    sql: ${TABLE}.common_expenses_team_actual;;
+    sql: ${TABLE}.cost_selling_team_actual;;
     value_format: "#,##0.00"
   }
 
@@ -130,8 +129,8 @@ view: sql_runner_query_budget_cost {
       cost_tool_actual_,
       cost_team_target,
       cost_team_actual,
-      common_expenses_selling_team_target,
-      common_expenses_team_actual,
+      cost_selling_team_target,
+      cost_selling_team_actual,
       common_expenses_target,
       common_expenses_actual,
       common_expenses_admin_target
