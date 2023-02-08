@@ -11,6 +11,8 @@ view: sql_runner_query_budget_revenue {
     drill_fields: [detail*]
   }
 
+
+
   dimension_group: Month {
     label: "Month"
     description: "Google Sheet : First Date Of Month"
