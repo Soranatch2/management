@@ -50,11 +50,11 @@ view: sql_runner_query_budget_cost {
     value_format: "#,##0.00"
     }
 
-  measure: cost_tool_actual_ {
+  measure: cost_tool_actual {
     label: "Cost Tool (Actual)"
     description: "Google Sheet : Cost Tools Actual"
     type: sum
-    sql: ${TABLE}.cost_tool_actual_;;
+    sql: ${TABLE}.cost_tool_actual;;
     value_format: "#,##0.00"
     }
 
@@ -126,7 +126,7 @@ view: sql_runner_query_budget_cost {
       Month_date,
       pillar,
       cost_tool_target,
-      cost_tool_actual_,
+      cost_tool_actual,
       cost_team_target,
       cost_team_actual,
       cost_selling_team_target,
