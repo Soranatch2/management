@@ -46,80 +46,80 @@ view: sql_runner_query_budget_cost {
     label: "Cost Tool (Target)"
     description: "Google Sheet : Cost Tools Target"
     type:sum
-    sql: ${TABLE}.cost_tool_target
-    value_format:"0.###";;
+    sql: ${TABLE}.cost_tool_target;;
+    value_format:"0.###"
   }
 
   measure: cost_tool_actual_ {
     label: "Cost Tool (Actual)"
     description: "Google Sheet : Cost Tools Actual"
     type: sum
-    sql: ${TABLE}.cost_tool_actual_
-    value_format:"0.###";;
+    sql: ${TABLE}.cost_tool_actual_;;
+    value_format:"0.###"
   }
 
   measure: cost_team_target {
     label: "Cost Team (Target)"
     description: "Google Sheet : Cost Team Target"
     type: sum
-    sql: ${TABLE}.cost_team_target
-    value_format:"0.###";;
+    sql: ${TABLE}.cost_team_target;;
+    value_format:"0.###"
   }
 
   measure: cost_team_actual {
     label: "Cost Team (Actual)"
     description: "Google Sheet : Cost Team Actual "
     type: sum
-    sql: ${TABLE}.cost_team_actual
-    value_format:"0.###";;
+    sql: ${TABLE}.cost_team_actual;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_selling_team_target {
     label: "Selling Team (Target)"
     description: "Google Sheet : Selling Team Target"
     type: sum
-    sql: ${TABLE}.common_expenses_selling_team_target
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_selling_team_target;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_team_actual {
     label: "Selling Team (Actual)"
     description: "Google Sheet : Selling Team Actual"
     type: sum
-    sql: ${TABLE}.common_expenses_team_actual
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_team_actual;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_target {
     label: "Common Expenses (Target)"
     description: "Google Sheet : Selling ส่วนกลาง Target"
     type: sum
-    sql: ${TABLE}.common_expenses_target
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_target;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_actual {
     label: "Common Expenses (Actual)"
     description: "Google Sheet : Selling ส่วนกลาง Actual"
     type: sum
-    sql: ${TABLE}.common_expenses_actual
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_actual;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_admin_target {
     label: "Admin Target"
     description: "Google Sheet : Admin ส่วนกลาง Target"
     type: sum
-    sql: ${TABLE}.common_expenses_admin_target
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_admin_target;;
+    value_format:"0.###"
   }
 
   measure: common_expenses_admin_actual {
     label: "Admin Actual"
     description: "Google Sheet : Admin ส่วนกลาง Target"
     type: sum
-    sql: ${TABLE}.common_expenses_admin_actual
-    value_format:"0.###";;
+    sql: ${TABLE}.common_expenses_admin_actual;;
+    value_format:"0.###"
   }
 
   set: detail {
