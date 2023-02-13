@@ -91,6 +91,12 @@ explore: sql_runner_query_budget_cost {
   }
   }
 
+explore: sql_runner_query_budget{
+
+  }
+
+
+
 # explore: jira_dataset {}
 
 # explore: everhour_time_tracking {}
