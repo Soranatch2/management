@@ -67,7 +67,13 @@ view: sql_runner_query_budget {
 
   dimension: team_leader {
     type: string
-    sql: ${TABLE}.team ;;
+    sql:
+    case when ${TABLE}.team =" DA1" then "Au"
+    when ${TABLE}.team =" DA2" then "Champ"
+    when ${TABLE}.team =" DA3" then "Fern"
+    when ${TABLE}.team =" DA4" then "Krumkrim"
+    when ${TABLE}.team =" DA5" then "Tay"
+    end;;
   }
 
 
@@ -99,11 +105,6 @@ view: sql_runner_query_budget {
     value_format: "#,##0.00"
   }
 
-  # measure:  {
-  #   type: sum
-  #   filters: [type: "Team",type:"Tools",type:"%Revenue%" ]
-  #   sql: ${TABLE} ;;
-  # }
 
   measure: cost_tool_team_target {
     hidden: yes
