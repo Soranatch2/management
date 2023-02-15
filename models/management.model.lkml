@@ -11,6 +11,10 @@ datagroup: management_default_datagroup {
 persist_with: management_default_datagroup
 
 explore: project_progress {
+  access_filter: {
+    field: pillar
+    user_attribute: employee_type
+  }
   label: "Master_Project"
   view_name: project_progress
 
@@ -61,15 +65,19 @@ explore: sql_runner_query_date {
 
 
 }
-explore: sql_runner_analytics_budget {
-  # join: project_plan {
-  #   type: left_outer
-  #   view_label: "Project"
-  #   relationship: one_to_many
-  #   sql_on: ${sql_runner_analytics_budget.mentor} = ${project_plan.mentor} ;;
-  # }
+# explore: sql_runner_analytics_budget {
+#   access_filter: {
+#     field: pillar
+#     user_attribute: employee_type
+#   }
+#   # join: project_plan {
+#   #   type: left_outer
+#   #   view_label: "Project"
+#   #   relationship: one_to_many
+#   #   sql_on: ${sql_runner_analytics_budget.mentor} = ${project_plan.mentor} ;;
+#   # }
 
-}
+# }
 explore: sql_runner_query_revenue{
   access_filter: {
     field: pillar
@@ -85,13 +93,3 @@ explore: sql_runner_query_budget{
 
   }
   }
-
-
-
-# explore: jira_dataset {}
-
-# explore: everhour_time_tracking {}
-
-# explore: everhour_dataset {}
-
-# explore: project_plan{}
