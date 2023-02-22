@@ -78,13 +78,14 @@ explore: sql_runner_query_date {
 #   # }
 
 # }
+
+
 explore: sql_runner_query_revenue{
   access_filter: {
     field: pillar
     user_attribute: employee_type
   }
-
-}
+  }
 
 explore: sql_runner_query_budget{
   access_filter: {

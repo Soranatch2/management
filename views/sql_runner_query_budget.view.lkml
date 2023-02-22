@@ -73,6 +73,10 @@ view: sql_runner_query_budget {
     when ${TABLE}.team =" DA3" then "Fern"
     when ${TABLE}.team =" DA4" then "Krumkrim"
     when ${TABLE}.team =" DA5" then "Tay"
+    when ${TABLE}.team =" SEO" then "SEO"
+    when ${TABLE}.team =" DS" then "DS"
+    when ${TABLE}.team =" B1" then "B1"
+    when ${TABLE}.team =" B2" then "B2"
     end;;
   }
 
@@ -107,7 +111,7 @@ view: sql_runner_query_budget {
 
 
   measure: cost_tool_team_target {
-    hidden: yes
+    hidden: no
     type: sum
     filters: [type: "%Tools%,%Team%,-%Selling%"]
     sql: ${TABLE}.Target;;
@@ -117,7 +121,7 @@ view: sql_runner_query_budget {
 
 
   measure: cost_tool_team_actual {
-    hidden: yes
+    hidden: no
     type: sum
     filters: [type: "%Tools%,%Team%,-%Selling%"]
     sql: ${TABLE}.Actual;;
