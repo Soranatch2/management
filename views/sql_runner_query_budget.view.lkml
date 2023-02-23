@@ -155,25 +155,41 @@ view: sql_runner_query_budget {
 
 measure: percent_gross_profit_target {
   type: number
-  sql: ${gross_profit_target}/${revenue_target}*100 ;;
+  sql:
+   case
+    when ${revenue_actual}=0 then 0
+    when ${revenue_target}=0 then 0
+    else ${gross_profit_target}/${revenue_target}*100 end;;
   value_format: "0.0\%"
 }
 
   measure: percent_gross_profit_actual {
     type: number
-    sql: ${gross_profit_actual}/${revenue_actual}*100 ;;
+    sql:
+     case
+    when ${revenue_actual}=0 then 0
+    when ${revenue_target}=0 then 0
+    else ${gross_profit_actual}/${revenue_actual}*100 end ;;
     value_format: "0.0\%"
   }
 
   measure: percent_net_profit_target {
     type: number
-    sql: ${net_profit_target}/${revenue_target}*100 ;;
+    sql:
+    case
+    when ${revenue_actual}=0 then 0
+    when ${revenue_target}=0 then 0
+    else ${net_profit_target}/${revenue_target}*100 end ;;
     value_format: "0.0\%"
   }
 
   measure: percent_net_profit_actual {
     type: number
-    sql: ${net_profit_actual}/${revenue_actual}*100 ;;
+    sql:
+    case
+    when ${revenue_actual}=0 then 0
+    when ${revenue_target}=0 then 0
+    else ${net_profit_actual}/${revenue_actual}*100 end ;;
     value_format: "0.0\%"
   }
 
