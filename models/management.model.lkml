@@ -1,5 +1,5 @@
 connection: "management_details"
-
+#comment
 # include all the views
 include: "/views/**/*.view"
 
