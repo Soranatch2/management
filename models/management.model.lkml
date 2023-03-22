@@ -11,10 +11,11 @@ datagroup: management_default_datagroup {
 persist_with: management_default_datagroup
 
 explore: project_progress {
-  access_filter: {
-    field: pillar
-    user_attribute: employee_type
-  }
+  #this part will filter pillar is not null by default
+  # access_filter: {
+  #   field: pillar
+  #   user_attribute: employee_type
+  # }
   label: "Master_Project"
   view_name: project_progress
 
