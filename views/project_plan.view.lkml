@@ -203,12 +203,13 @@ view: project_plan {
     type: string
     sql: ${TABLE}.Department ;;
   }
-  # dimension: service {
-  #   label: "Department"
-  #   description: "Bigquery - Department of Predictvie Company"
-  #   type: string
-  #   sql: ${TABLE}.Department ;;
-  # }
+
+  dimension: service_type {
+    label: "Service Type"
+    description: "Bigquery - Service/Tool"
+    type: string
+    sql: ${TABLE}.Service_Type ;;
+  }
 
   dimension: project_status{
     label: "Project Status From plan"
