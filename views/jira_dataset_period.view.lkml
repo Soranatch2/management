@@ -12,6 +12,7 @@ view: jira_dataset_period {
   dimension_group: update_date {
     description: "Bigquery : Updated Status from Jira"
     type: time
+    datatype: date
     timeframes: [date, week, month, year]
     sql: ${TABLE}.update_date ;;
   }

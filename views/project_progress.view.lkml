@@ -67,6 +67,7 @@ view: project_progress {
     label: "Scope ID"
     description: "Bigquery : Scope ID from Jira Dataset (Orignal)"
     type: string
+    primary_key: yes
     sql: ${TABLE}.scope_id ;;
     tags: ["string"]
     link: {
