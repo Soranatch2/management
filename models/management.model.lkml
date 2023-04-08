@@ -55,9 +55,16 @@ explore: project_progress {
 
   join: jira_dataset_period {
     type: left_outer
-    view_label: "Jira History"
+    view_label: "Jira History Monthly"
     relationship: one_to_many
     sql_on: ${jira_dataset.scope_id} = ${jira_dataset_period.scope_ids} ;;
+  }
+
+  join: jira_dataset_weekly {
+    type: left_outer
+    view_label: "Jira History Weekly"
+    relationship: one_to_many
+    sql_on: ${jira_dataset.scope_id} = ${jira_dataset_weekly.scope_ids} ;;
   }
 
 }
