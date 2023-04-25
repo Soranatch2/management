@@ -1,3 +1,4 @@
+#view of sale
 view: sql_runner_query_revenue {
   derived_table: {
     sql: With table1 as ( SELECT * FROM `research-development-361301.management_detail.project_plan`)
@@ -99,6 +100,7 @@ view: sql_runner_query_revenue {
     label: "Scope ID"
     description: "Bigquery : Scope ID"
     type: string
+    primary_key: yes
     sql: ${TABLE}.scope_id ;;
   }
 

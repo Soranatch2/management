@@ -13,6 +13,7 @@ view: sql_runner_query_date {
         order by 1
        ;;
   }
+  view_label: "Raw Everhour"
 
   measure: count {
     type: count
