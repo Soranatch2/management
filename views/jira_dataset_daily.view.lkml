@@ -1,5 +1,5 @@
 view: jira_dataset_daily {
-    sql_table_name: `management_detail.jira_dataset_append`
+    sql_table_name: `management_detail.jira_dataset_test`
       ;;
 
   dimension_group: upload_date {
@@ -100,6 +100,13 @@ view: jira_dataset_daily {
       primary_key: yes
       sql: ${TABLE}.scope_id ;;
     }
+
+  dimension: issue_type {
+    label: "Issue Types"
+    description: "Bigquery : Issue Types"
+    type: string
+    sql: ${TABLE}.issue_type ;;
+  }
 
     dimension: total {
       # hidden: yes
