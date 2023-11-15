@@ -1,5 +1,5 @@
 view: jira_dataset_daily {
-    sql_table_name: `management_detail.jira_dataset_append`
+    sql_table_name: `management_detail.jira_dataset`
       ;;
 
   dimension_group: upload_date {
