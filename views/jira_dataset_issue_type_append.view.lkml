@@ -1,5 +1,5 @@
-view: jira_dataset_test {
-  sql_table_name: `management_detail.jira_dataset_test`
+view: jira_dataset_issue_type_append {
+  sql_table_name: `management_detail.jira_dataset_issue_type_append`
     ;;
 
   dimension_group: upload_date {
