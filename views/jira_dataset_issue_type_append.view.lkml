@@ -108,7 +108,6 @@ view: jira_dataset_issue_type_append {
     sql: ${TABLE}.issue_type ;;
   }
 
-
   dimension: total {
     # hidden: yes
     label: "Total"
