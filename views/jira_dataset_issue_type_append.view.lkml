@@ -101,12 +101,6 @@ view: jira_dataset_issue_type_append {
     sql: ${TABLE}.scope_id ;;
   }
 
-  dimension: issue_type {
-    label: "Issue_Type"
-    description: "Bigquery : issue_type"
-    type: string
-    sql: ${TABLE}.issue_type ;;
-  }
 
   dimension: total {
     # hidden: yes
